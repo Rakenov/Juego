@@ -1,0 +1,20 @@
+-Rpg por turnos tipo pokemon(Piedra-papel-tijera)
+-Guerra de pandillas
+-Tablero pvp
+-Gameplay tipo final fantasy
+-Gameplay tipo Right & Down
+-Aventura grafica
+-Elementos tipo worms
+
+
+
+
+Referencias:
+-https://colab.research.google.com/drive/1dmxQfRPy5ZAmH30CKm_61mj67tkZJhja#scrollTo=hQNIpsjZECxL
+-https://pythondiario.com/2016/10/simple-juego-rpg-en-python.html
+
+
+Herramientas:
+-Cocos2d
+-Pygame
+-Pandas3D
