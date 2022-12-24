@@ -1,12 +1,119 @@
--Rpg por turnos tipo pokemon(Piedra-papel-tijera)
--Guerra de pandillas
--Tablero pvp
--Gameplay tipo final fantasy
--Gameplay tipo Right & Down
--Aventura grafica
--Elementos tipo worms
+Features:
+-Sistema de vida por porcentaje
+-Se tiene que poder conseguir items los cuales sumen atributos
+-Eventos con castigos
+-4 opciones: luchar,objeto,defender,huir
+-Tipos de objetos: pociones que restauren vida o mana, objeto de daño, etc...
+-Clase principal: Entidad-->Atributos: vida, mana, defensa, ataque 
+-Clases: Mago, Guerrero, Luchador 
+-Clases comienzan con stats diferentes.
+-
 
 
+class Personaje:
+
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida,experiencia=0):
+        self.nombre = nombre
+        self.fuerza = fuerza
+        self.inteligencia = inteligencia
+        self.defensa = defensa
+        self.vida = vida
+        self.vida = experiencia
+    
+    def atributos(self):
+        print(self.nombre, ":", sep="")
+        print("·Fuerza:", self.fuerza)
+        print("·Inteligencia:", self.inteligencia)
+        print("·Defensa:", self.defensa)
+        print("·Vida:", self.vida)
+
+    def subir_nivel(self, fuerza, inteligencia, defensa):
+        self.fuerza = self.fuerza + fuerza
+        self.inteligencia = self.inteligencia + inteligencia
+        self.defensa = self.defensa + defensa
+
+    def esta_vivo(self):
+        return self.vida > 0
+
+    def morir(self):
+        self.vida = 0
+        print(self.nombre, "ha muerto")
+        self.experiencia= self.experiencia + 5
+
+    def daño(self, enemigo):
+        return self.fuerza - enemigo.defensa
+
+    def atacar(self, enemigo):
+        daño = self.daño(enemigo)
+        enemigo.vida = enemigo.vida - daño
+        print(self.nombre, "ha realizado", daño, "puntos de daño a", enemigo.nombre)
+        if enemigo.esta_vivo():
+            print("Vida de", enemigo.nombre, "es", enemigo.vida)
+        else:
+            enemigo.morir()
+
+class Guerrero(Personaje):
+    
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.espada = espada
+
+    def cambiar_arma(self):
+        opcion = int(input("Elige un arma: (1) Acero Valyrio, daño 8. (2) Matadragones, daño 10"))
+        if opcion == 1:
+            self.espada = 8
+        elif opcion == 2:
+            self.espada = 10,
+        else:
+            print("Número de arma incorrecta")
+
+    def atributos(self):
+        super().atributos()
+        print("·Espada:", self.espada)
+
+    def daño(self, enemigo):
+        return self.fuerza+self.espada - enemigo.defensa
+
+class Mago(Personaje):
+
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, libro):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.libro = libro
+
+    def atributos(self):
+        super().atributos()
+        print("·Libro:", self.libro)
+
+    def daño(self, enemigo):
+        return self.inteligencia*self.libro - enemigo.defensa
+
+class Luchador(Personaje):
+
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, puño):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.puño = puño
+
+    def atributos(self):
+        super().atributos()
+        print("·Puño:", self.puño)
+
+    def daño(self, enemigo):
+        return self.fuerza*self.puño - enemigo.defensa
+    
+
+
+
+-Sistema de combate
+-Sistema de eventos--->> Eventos: enemigo, premio, eleccion(Castigo,premio), huir
+-Historia
+-Clase enemigo
+-Retocar sistema experiencia
+
+Ideas historia:
+
+-copiar SAO
+-isekai manhwa novela
+-aldea atacada por monstruos
 
 
 Referencias:
